@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -592,72 +590,124 @@ namespace Projeto_pdi
 
             }
         }
-        private void Kirsch(int threshold)
+        private void Kirsch(int Threshold)
         {
             Bitmap original = new Bitmap(Pimagem.Image);
-            Bitmap saida = new Bitmap(original.Width, original.Height, PixelFormat.Format24bppRgb);
-
-            Rectangle rect = new Rectangle(0, 0, original.Width, original.Height);
-            BitmapData origData = original.LockBits(rect, ImageLockMode.ReadOnly, original.PixelFormat);
-            BitmapData saidaData = saida.LockBits(rect, ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
-
-            int stride = origData.Stride;
-            int bytesPerPixel = Image.GetPixelFormatSize(origData.PixelFormat) / 8;
-
-            byte[] buffer = new byte[stride * original.Height];
-            byte[] result = new byte[stride * original.Height];
-            Marshal.Copy(origData.Scan0, buffer, 0, buffer.Length);
-
-            int[][,] kernels = new int[][,]
+            Bitmap saida = grayscale(original);
+            double v, g1, g2, g3, g4, g5, g6, g7, g8, g = 0;
+            int[,] kernel = new int[,]
             {
-        new int[,] { { 5, -3, -3 }, { 5, 0, -3 }, { 5, -3, -3 } },
-        new int[,] { { -3, -3, -3 }, { 5, 0, -3 }, { 5, 5, -3 } },
-        new int[,] { { -3, -3, -3 }, { -3, 0, -3 }, { 5, 5, 5 } },
-        new int[,] { { -3, -3, -3 }, { -3, 0, 5 }, { -3, 5, 5 } },
-        new int[,] { { -3, -3, 5 }, { -3, 0, 5 }, { -3, -3, 5 } },
-        new int[,] { { -3, 5, 5 }, { -3, 0, 5 }, { -3, -3, -3 } },
-        new int[,] { { 5, 5, 5 }, { -3, 0, -3 }, { -3, -3, -3 } },
-        new int[,] { { 5, 5, -3 }, { 5, 0, -3 }, { -3, -3, -3 } }
+                { 5, -3, -3 },
+                { 5,  0, -3 },
+                { 5, -3, -3 }
             };
-
-            Parallel.For(1, original.Height - 1, y =>
+            int[,] kernel2 = new int[,]
             {
-                for (int x = 1; x < original.Width - 1; x++)
+                { -3, -3, -3 },
+                { 5,   0, -3 },
+                { 5,   5, -3 }
+            };
+            int[,] kernel3 = new int[,]
+            {
+                { -3, -3,-3 },
+                { -3, 0, -3 },
+                { 5, 5,   5 }
+            };
+            int[,] kernel4 = new int[,]
+            {
+                { -3,-3,-3 },
+                { -3, 0, 5 },
+                { -3, 5, 5 }
+            };
+            int[,] kernel5 = new int[,]
+            {
+                { -3, -3,5 },
+                { -3, 0, 5 },
+                { -3, -3,5 }
+            };
+            int[,] kernel6 = new int[,]
+            {
+                { -3, 5, 5 },
+                { -3, 0, 5 },
+                { -3,-3,-3 }
+            };
+            int[,] kernel7 = new int[,]
+            {
+                { 5, 5, 5 },
+                { -3,0,-3 },
+                {-3,-3,-3 }
+            };
+            int[,] kernel8 = new int[,]
+            {
+                { 5, 5, -3 },
+                { 5, 0, -3 },
+                {-3,-3, -3 }
+            };
+            for (int i = 1; i < saida.Height - 1; i++)
+            {
+                for (int j = 1; j < saida.Width - 1; j++)
                 {
-                    double max = 0;
-
-                    foreach (var kernel in kernels)
+                    g1 = g2 = g3 = g4 = g5 = g6 = g7 = g8 = 0;
+                    for (int k = 0; k < 3; k++)
                     {
-                        double g = 0;
-
-                        for (int ky = 0; ky < 3; ky++)
+                        for (int l = 0; l < 3; l++)
                         {
-                            for (int kx = 0; kx < 3; kx++)
-                            {
-                                int px = x + kx - 1;
-                                int py = y + ky - 1;
-                                int pos = (py * stride) + (px * bytesPerPixel);
-                                byte gray = (byte)((buffer[pos] + buffer[pos + 1] + buffer[pos + 2]) / 3);
-
-                                g += kernel[ky, kx] * gray;
-                            }
+                            v = kernel[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g1 += v;
+                            v = kernel2[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g2 += v;
+                            v = kernel3[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g3 += v;
+                            v = kernel4[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g4 += v;
+                            v = kernel5[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g5 += v;
+                            v = kernel6[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g6 += v;
+                            v = kernel7[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g7 += v;
+                            v = kernel8[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g8 += v;
                         }
-
-                        if (g > max) max = g;
                     }
-
-                    byte p = (byte)(max > threshold ? 255 : 0);
-                    int pixelPos = (y * stride) + (x * bytesPerPixel);
-                    result[pixelPos] = result[pixelPos + 1] = result[pixelPos + 2] = p;
+                    g = g1;
+                    if (g2 > g)
+                    {
+                        g = g2;
+                    }
+                    if (g3 > g)
+                    {
+                        g = g3;
+                    }
+                    if (g4 > g)
+                    {
+                        g = g4;
+                    }
+                    if (g5 > g)
+                    {
+                        g = g5;
+                    }
+                    if (g6 > g)
+                    {
+                        g = g6;
+                    }
+                    if (g7 > g)
+                    {
+                        g = g7;
+                    }
+                    if (g8 > g)
+                    {
+                        g = g8;
+                    }
+                    byte p = 0;
+                    if (g > Threshold)
+                    {
+                        p = 255;
+                    }
+                    saida.SetPixel(j, i, Color.FromArgb(p, p, p));
                 }
-            });
-
-            Marshal.Copy(result, 0, saidaData.Scan0, result.Length);
-            original.UnlockBits(origData);
-            saida.UnlockBits(saidaData);
-
-            Pimagem.Image = saida;
+                Pimagem.Image = saida;
+            }
         }
-
     }
 }
