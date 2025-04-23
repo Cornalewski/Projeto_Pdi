@@ -39,7 +39,7 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.button11 = new System.Windows.Forms.Button();
+            this.bKirsch = new System.Windows.Forms.Button();
             this.bMediana = new System.Windows.Forms.Button();
             this.bContraste = new System.Windows.Forms.Button();
             this.Btranslaçao = new System.Windows.Forms.Button();
@@ -72,7 +72,7 @@
             this.barra_menu.Location = new System.Drawing.Point(0, 0);
             this.barra_menu.Name = "barra_menu";
             this.barra_menu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.barra_menu.Size = new System.Drawing.Size(949, 28);
+            this.barra_menu.Size = new System.Drawing.Size(1041, 28);
             this.barra_menu.TabIndex = 0;
             this.barra_menu.Text = "barra_menu";
             this.barra_menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.barra_menu_ItemClicked);
@@ -93,7 +93,7 @@
             this.botao_abri.ForeColor = System.Drawing.SystemColors.Control;
             this.botao_abri.Image = ((System.Drawing.Image)(resources.GetObject("botao_abri.Image")));
             this.botao_abri.Name = "botao_abri";
-            this.botao_abri.Size = new System.Drawing.Size(224, 26);
+            this.botao_abri.Size = new System.Drawing.Size(179, 26);
             this.botao_abri.Text = "Abrir arquivo";
             this.botao_abri.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -103,7 +103,7 @@
             this.botao_salvar.ForeColor = System.Drawing.SystemColors.Control;
             this.botao_salvar.Image = ((System.Drawing.Image)(resources.GetObject("botao_salvar.Image")));
             this.botao_salvar.Name = "botao_salvar";
-            this.botao_salvar.Size = new System.Drawing.Size(224, 26);
+            this.botao_salvar.Size = new System.Drawing.Size(179, 26);
             this.botao_salvar.Text = "Salvar";
             this.botao_salvar.Click += new System.EventHandler(this.botao_salvar_Click);
             // 
@@ -143,14 +143,17 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(1068, 83);
             // 
-            // button11
+            // bKirsch
             // 
-            this.button11.Location = new System.Drawing.Point(983, 3);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(92, 100);
-            this.button11.TabIndex = 10;
-            this.button11.Text = "button11";
-            this.button11.UseVisualStyleBackColor = true;
+            this.bKirsch.Location = new System.Drawing.Point(983, 3);
+            this.bKirsch.Name = "bKirsch";
+            this.bKirsch.Size = new System.Drawing.Size(92, 100);
+            this.bKirsch.TabIndex = 10;
+            this.bKirsch.Text = "Kirsch";
+            this.bKirsch.UseVisualStyleBackColor = true;
+            this.bKirsch.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseDown);
+            this.bKirsch.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseMove);
+            this.bKirsch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseUp);
             // 
             // bMediana
             // 
@@ -328,16 +331,16 @@
             this.flowLayoutPanel1.Controls.Add(this.bContraste);
             this.flowLayoutPanel1.Controls.Add(this.Btranslaçao);
             this.flowLayoutPanel1.Controls.Add(this.bMediana);
-            this.flowLayoutPanel1.Controls.Add(this.button11);
+            this.flowLayoutPanel1.Controls.Add(this.bKirsch);
             this.flowLayoutPanel1.Controls.Add(this.button12);
             this.flowLayoutPanel1.Controls.Add(this.button13);
             this.flowLayoutPanel1.Controls.Add(this.button14);
             this.flowLayoutPanel1.Controls.Add(this.button15);
             this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1, 470);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 482);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(948, 134);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1444, 134);
             this.flowLayoutPanel1.TabIndex = 13;
             this.flowLayoutPanel1.WrapContents = false;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
@@ -368,7 +371,7 @@
             this.panel1.Controls.Add(this.Pimagem);
             this.panel1.Location = new System.Drawing.Point(2, 31);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(946, 448);
+            this.panel1.Size = new System.Drawing.Size(1038, 448);
             this.panel1.TabIndex = 14;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -380,7 +383,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(50)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(949, 577);
+            this.ClientSize = new System.Drawing.Size(1041, 577);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.barra_menu);
@@ -424,7 +427,7 @@
         private System.Windows.Forms.Button bMediana;
         private System.Windows.Forms.Button bContraste;
         private System.Windows.Forms.Button Btranslaçao;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button bKirsch;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button13;
