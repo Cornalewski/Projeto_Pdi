@@ -29,11 +29,6 @@ namespace Projeto_pdi
 
         }
 
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
         public static int Gdialog(string text, string caption)
         {
             Form prompt = new Form();
@@ -98,10 +93,6 @@ namespace Projeto_pdi
             valor[1] = (float)inputBox2.Value;
             return valor;
         }
-        private void Form1_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -123,21 +114,6 @@ namespace Projeto_pdi
             }
         }
 
-
-        private void barra_menu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
         public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
         {
             var ratioX = (double)maxWidth / image.Width;
@@ -257,6 +233,14 @@ namespace Projeto_pdi
             {
                 int valor = Gdialog("insira um valor para o threshold", "KIRSCH");
                 Kirsch(valor);
+            }
+            else if (name == "bErosao")
+            {
+                erosao();
+            }
+            else if (name == "bDilatacao")
+            {
+                dilatacao();
             }
         }
         private void grayscale()
@@ -709,5 +693,64 @@ namespace Projeto_pdi
                 Pimagem.Image = saida;
             }
         }
+        private void erosao() 
+        { 
+        Bitmap original = new Bitmap(Pimagem.Image);
+        Bitmap saida = grayscale(original);
+        Bitmap resultado = new Bitmap(original.Width, original.Height);
+
+            for (int y = 1; y<original.Height - 1; y++)
+            {
+               for (int x = 1; x<original.Width - 1; x++)
+               {
+                   int menor = 255;
+
+                   for (int ky = -1; ky <= 1; ky++)
+                   {
+                      for (int kx = -1; kx <= 1; kx++)
+                      {
+                         int pixel = saida.GetPixel(x + kx, y + ky).R;
+                         if (pixel<menor)
+                         {
+                           menor = pixel;
+                         }
+                      }
+                   }
+
+                 resultado.SetPixel(x, y, Color.FromArgb(menor, menor, menor));
+               }
+            }
+         Pimagem.Image = resultado;
+        }
+        private void dilatacao()
+        {
+            Bitmap original = new Bitmap(Pimagem.Image);
+            Bitmap saida = grayscale(original);
+            Bitmap resultado = new Bitmap(original.Width, original.Height);
+
+            for (int y = 1; y < original.Height - 1; y++)
+            {
+                for (int x = 1; x < original.Width - 1; x++)
+                {
+                    int maior = 0;
+
+                    for (int ky = -1; ky <= 1; ky++)
+                    {
+                        for (int kx = -1; kx <= 1; kx++)
+                        {
+                            int pixel = saida.GetPixel(x + kx, y + ky).R;
+                            if (pixel > maior)
+                            {
+                                maior = pixel;
+                            }
+                        }
+                    }
+
+                    resultado.SetPixel(x, y, Color.FromArgb(maior,maior,maior));
+                }
+            }
+            Pimagem.Image = resultado;
+        }
+
     }
 }

@@ -52,8 +52,8 @@
             this.bGrayscale = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.bDilatacao = new System.Windows.Forms.Button();
+            this.bErosao = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Pimagem = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -72,10 +72,9 @@
             this.barra_menu.Location = new System.Drawing.Point(0, 0);
             this.barra_menu.Name = "barra_menu";
             this.barra_menu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.barra_menu.Size = new System.Drawing.Size(1041, 28);
+            this.barra_menu.Size = new System.Drawing.Size(1360, 28);
             this.barra_menu.TabIndex = 0;
             this.barra_menu.Text = "barra_menu";
-            this.barra_menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.barra_menu_ItemClicked);
             // 
             // menuToolStripMenuItem
             // 
@@ -297,23 +296,29 @@
             this.button14.Text = "button14";
             this.button14.UseVisualStyleBackColor = true;
             // 
-            // button13
+            // bDilatacao
             // 
-            this.button13.Location = new System.Drawing.Point(1181, 3);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(94, 100);
-            this.button13.TabIndex = 12;
-            this.button13.Text = "button13";
-            this.button13.UseVisualStyleBackColor = true;
+            this.bDilatacao.Location = new System.Drawing.Point(1181, 3);
+            this.bDilatacao.Name = "bDilatacao";
+            this.bDilatacao.Size = new System.Drawing.Size(94, 100);
+            this.bDilatacao.TabIndex = 12;
+            this.bDilatacao.Text = "dilataçao";
+            this.bDilatacao.UseVisualStyleBackColor = true;
+            this.bDilatacao.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseDown);
+            this.bDilatacao.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseMove);
+            this.bDilatacao.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseUp);
             // 
-            // button12
+            // bErosao
             // 
-            this.button12.Location = new System.Drawing.Point(1081, 3);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(94, 100);
-            this.button12.TabIndex = 11;
-            this.button12.Text = "button12";
-            this.button12.UseVisualStyleBackColor = true;
+            this.bErosao.Location = new System.Drawing.Point(1081, 3);
+            this.bErosao.Name = "bErosao";
+            this.bErosao.Size = new System.Drawing.Size(94, 100);
+            this.bErosao.TabIndex = 11;
+            this.bErosao.Text = "erosao";
+            this.bErosao.UseVisualStyleBackColor = true;
+            this.bErosao.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseDown);
+            this.bErosao.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseMove);
+            this.bErosao.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseUp);
             // 
             // flowLayoutPanel1
             // 
@@ -332,18 +337,17 @@
             this.flowLayoutPanel1.Controls.Add(this.Btranslaçao);
             this.flowLayoutPanel1.Controls.Add(this.bMediana);
             this.flowLayoutPanel1.Controls.Add(this.bKirsch);
-            this.flowLayoutPanel1.Controls.Add(this.button12);
-            this.flowLayoutPanel1.Controls.Add(this.button13);
+            this.flowLayoutPanel1.Controls.Add(this.bErosao);
+            this.flowLayoutPanel1.Controls.Add(this.bDilatacao);
             this.flowLayoutPanel1.Controls.Add(this.button14);
             this.flowLayoutPanel1.Controls.Add(this.button15);
             this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 482);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 482);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1444, 134);
             this.flowLayoutPanel1.TabIndex = 13;
             this.flowLayoutPanel1.WrapContents = false;
-            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // Pimagem
             // 
@@ -371,9 +375,8 @@
             this.panel1.Controls.Add(this.Pimagem);
             this.panel1.Location = new System.Drawing.Point(2, 31);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1038, 448);
+            this.panel1.Size = new System.Drawing.Size(1357, 448);
             this.panel1.TabIndex = 14;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // mainS
             // 
@@ -383,7 +386,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(50)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1041, 577);
+            this.ClientSize = new System.Drawing.Size(1360, 577);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.barra_menu);
@@ -393,8 +396,6 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            //this.Load += new System.EventHandler(this.Form1_Load);
-            this.DoubleClick += new System.EventHandler(this.Form1_DoubleClick);
             this.barra_menu.ResumeLayout(false);
             this.barra_menu.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -430,8 +431,8 @@
         private System.Windows.Forms.Button bKirsch;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button bDilatacao;
+        private System.Windows.Forms.Button bErosao;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.PictureBox Pimagem;
         private System.Windows.Forms.Panel panel1;
