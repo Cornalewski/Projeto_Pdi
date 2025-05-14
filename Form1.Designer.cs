@@ -51,7 +51,7 @@
             this.bRedimensionamento = new System.Windows.Forms.Button();
             this.bGrayscale = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
+            this.bThinning = new System.Windows.Forms.Button();
             this.bDilatacao = new System.Windows.Forms.Button();
             this.bErosao = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -287,14 +287,17 @@
             this.button15.Text = "button15";
             this.button15.UseVisualStyleBackColor = true;
             // 
-            // button14
+            // bThinning
             // 
-            this.button14.Location = new System.Drawing.Point(1281, 3);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(94, 100);
-            this.button14.TabIndex = 13;
-            this.button14.Text = "button14";
-            this.button14.UseVisualStyleBackColor = true;
+            this.bThinning.Location = new System.Drawing.Point(1281, 3);
+            this.bThinning.Name = "bThinning";
+            this.bThinning.Size = new System.Drawing.Size(94, 100);
+            this.bThinning.TabIndex = 13;
+            this.bThinning.Text = "Thinning";
+            this.bThinning.UseVisualStyleBackColor = true;
+            this.bThinning.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseDown);
+            this.bThinning.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseMove);
+            this.bThinning.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseUp);
             // 
             // bDilatacao
             // 
@@ -339,7 +342,7 @@
             this.flowLayoutPanel1.Controls.Add(this.bKirsch);
             this.flowLayoutPanel1.Controls.Add(this.bErosao);
             this.flowLayoutPanel1.Controls.Add(this.bDilatacao);
-            this.flowLayoutPanel1.Controls.Add(this.button14);
+            this.flowLayoutPanel1.Controls.Add(this.bThinning);
             this.flowLayoutPanel1.Controls.Add(this.button15);
             this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 482);
@@ -430,7 +433,7 @@
         private System.Windows.Forms.Button Btranslaçao;
         private System.Windows.Forms.Button bKirsch;
         private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button bThinning;
         private System.Windows.Forms.Button bDilatacao;
         private System.Windows.Forms.Button bErosao;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;

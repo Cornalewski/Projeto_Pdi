@@ -242,6 +242,10 @@ namespace Projeto_pdi
             {
                 dilatacao();
             }
+            else if (name == "bThinning")
+            {
+                ZhangSuenThinning();
+            }
         }
         private void grayscale()
         {
@@ -750,6 +754,256 @@ namespace Projeto_pdi
                 }
             }
             Pimagem.Image = resultado;
+        }
+
+
+        // holt thinning nao funcionando
+
+        //private bool BateMascara(int[,] janela, int[,] mascara)
+        //{
+        //    for (int i = 0; i < 3; i++)
+        //    {
+        //        for (int j = 0; j < 3; j++)
+        //        {
+        //            if (mascara[i, j] != -1 && janela[i, j] != mascara[i, j])
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //    return true;
+        //}
+
+        //private bool ComparaKernel(int[,] janela, int[][,] mascaras)
+        //{
+        //    int count = 0;
+        //    int transicao = 0;
+
+        //    // P1 é central, P2-P9 são vizinhos
+        //    int p1 = janela[1, 1];
+        //    int p2 = janela[0, 1];
+        //    int p3 = janela[0, 2];
+        //    int p4 = janela[1, 2];
+        //    int p5 = janela[2, 2];
+        //    int p6 = janela[2, 1];
+        //    int p7 = janela[2, 0];
+        //    int p8 = janela[1, 0];
+        //    int p9 = janela[0, 0];
+
+        //    int[] vP = new int[] { p1, p2, p3, p4, p5, p6, p7, p8, p9 };
+
+        //    if (p1 == 255) return false;
+
+        //    for (int i = 1; i < 9; i++)
+        //    {
+        //        if (vP[i] == 0)
+        //            count++;
+        //    }
+        //    // Adicione no final de ComparaKernel
+        //    if (count == 1) return false; // Preserva terminações (evita apagar pontas)
+
+
+        //    // Conta transições 0→1
+        //    for (int i = 1; i < 8; i++)
+        //    {
+        //        if (vP[i] == 0 && vP[i + 1] == 255)
+        //            transicao++;
+        //    }
+
+        //    // Checa condições de remoção
+        //    if (count >= 2 && count <= 6 && transicao == 1)
+        //    {
+        //        foreach (var mascara in mascaras)
+        //        {
+        //            if (BateMascara(janela, mascara))
+        //                return false; // NÃO remove se bateu com máscara
+        //        }
+
+        //        return true; // pode remover
+        //    }
+
+        //    return false;
+        //}
+
+
+
+
+        //private void thinning_holt()
+        //{
+        //    Bitmap original = new Bitmap(Pimagem.Image);
+        //    Bitmap saida = Binarizaçao(original, 125);
+        //    Bitmap resultado = new Bitmap(saida);
+
+        //    int[,] janela = new int[3, 3];
+
+        //    int[][,] mascaras = new int[][,]
+        //    {
+        // new int[,] { {-1, 0, 255}, {0, 0, 255}, {255, 255, -1} },
+        // new int[,] { {255, -1, 0}, {255, 0, 0}, {-1, 255, 255} },
+        // new int[,] { {255, 255, -1}, {255, 0, 0}, {-1, 0, 255} },
+        // new int[,] { {-1, 255, 255}, {0, 0, 255}, {255, -1, 0} },
+
+        // new int[,] { {255, 0, -1}, {255, 0, 0}, {-1, 255, 255} },
+        // new int[,] { {-1, 255, 255}, {0, 0, 255}, {255, 0, -1} },
+        // new int[,] { {-1, 0, 255}, {0, 0, 255}, {255, 255, -1} },
+        // new int[,] { {255, 255, -1}, {255, 0, 0}, {-1, 0, 255} },
+
+        // new int[,] { {-1, 255, 255}, {255, 0, 0}, {255, 0, -1} },
+        // new int[,] { {255, -1, 0}, {255, 0, 0}, {-1, 255, 255} },
+        // new int[,] { {255, 0, -1}, {255, 0, 0}, {-1, 255, 255} },
+        // new int[,] { {-1, 255, 255}, {0, 0, 255}, {255, 0, -1} },
+
+        // new int[,] { {255, 255, -1}, {0, 0, 255}, {-1, 0, 255} },
+        // new int[,] { {-1, 0, 255}, {0, 0, 255}, {255, 255, -1} },
+        // new int[,] { {-1, 255, 255}, {255, 0, 0}, {255, 0, -1} },
+        // new int[,] { {255, 0, -1}, {255, 0, 0}, {-1, 255, 255} }};
+
+        //    bool alterado = true;
+        //    while (alterado)
+        //    {
+        //        alterado = false;
+
+        //        Bitmap novo = new Bitmap(resultado); // copia atual
+
+        //        for (int y = 1; y < resultado.Height - 1; y++)
+        //        {
+        //            for (int x = 1; x < resultado.Width - 1; x++)
+        //            {
+        //                for (int i = -1; i <= 1; i++)
+        //                    for (int j = -1; j <= 1; j++)
+        //                        janela[i + 1, j + 1] = resultado.GetPixel(x + j, y + i).R;
+
+        //                if (ComparaKernel(janela, mascaras))
+        //                {
+        //                    novo.SetPixel(x, y, Color.FromArgb(255, 255, 255));
+        //                    alterado = true;
+        //                }
+        //            }
+        //        }
+
+        //        resultado = novo;
+        //    }
+        //    Pimagem.Image = resultado;
+        //}
+        private void ZhangSuenThinning()
+        {
+            Bitmap input = new Bitmap(Pimagem.Image);
+            Bitmap bin = Binarizaçao(input, 125); // binariza a imagem
+            Bitmap img = new Bitmap(bin);
+            bool pixelRemovido;
+
+            do
+            {
+                pixelRemovido = false;
+                List<Point> pontosParaRemover = new List<Point>();
+
+                // Etapa 1
+                for (int y = 1; y < img.Height - 1; y++)
+                {
+                    for (int x = 1; x < img.Width - 1; x++)
+                    {
+                        if (img.GetPixel(x, y).R == 0 && ZhangSuenCondicao(x, y, img, etapa: 1))
+                            pontosParaRemover.Add(new Point(x, y));
+                    }
+                }
+
+                foreach (Point p in pontosParaRemover)
+                {
+                    img.SetPixel(p.X, p.Y, Color.White);
+                    pixelRemovido = true;
+                }
+
+                pontosParaRemover.Clear();
+
+                // Etapa 2
+                for (int y = 1; y < img.Height - 1; y++)
+                {
+                    for (int x = 1; x < img.Width - 1; x++)
+                    {
+                        if (img.GetPixel(x, y).R == 0 && ZhangSuenCondicao(x, y, img, etapa: 2))
+                            pontosParaRemover.Add(new Point(x, y));
+                    }
+                }
+
+                foreach (Point p in pontosParaRemover)
+                {
+                    img.SetPixel(p.X, p.Y, Color.White);
+                    pixelRemovido = true;
+                }
+
+            } while (pixelRemovido);
+
+            Pimagem.Image = img;
+        }
+        private bool ZhangSuenCondicao(int x, int y, Bitmap img, int etapa)
+        {
+            int[,] viz = new int[3, 3];
+            for (int j = -1; j <= 1; j++)
+            {
+                for (int i = -1; i <= 1; i++)
+                {
+                    viz[j + 1, i + 1] = img.GetPixel(x + i, y + j).R == 0 ? 1 : 0;
+                }
+            }
+
+            int[] p = {
+        viz[1, 1], // P1 (centro)
+        viz[0, 1], // P2
+        viz[0, 2], // P3
+        viz[1, 2], // P4
+        viz[2, 2], // P5
+        viz[2, 1], // P6
+        viz[2, 0], // P7
+        viz[1, 0], // P8
+        viz[0, 0]  // P9
+    };
+
+            int A = 0;
+            for (int i = 1; i <= 7; i++)
+                if (p[i] == 0 && p[i + 1] == 1) A++;
+            if (p[8] == 0 && p[1] == 1) A++;
+
+            int B = p[1] + p[2] + p[3] + p[4] + p[5] + p[6] + p[7] + p[8];
+
+            if (A == 1 && B >= 2 && B <= 6)
+            {
+                if (etapa == 1)
+                {
+                    if (p[1] * p[3] * p[5] == 0 && p[3] * p[5] * p[7] == 0)
+                        return true;
+                }
+                else if (etapa == 2)
+                {
+                    if (p[1] * p[3] * p[7] == 0 && p[1] * p[5] * p[7] == 0)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+
+        private Bitmap Binarizaçao(Image imagem, byte threshold)
+        {
+            Bitmap original = new Bitmap(imagem);
+            Bitmap saida = grayscale(original);
+
+            for (int i = 0; i < saida.Width; i++)
+            {
+                for (int j = 0; j < saida.Height; j++)
+                {
+                    Color pixel = saida.GetPixel(i, j);
+                    if (pixel.R > threshold)
+                    {
+                        saida.SetPixel(i, j, Color.FromArgb(255, 255, 255));
+                    }
+                    else
+                    {
+                        saida.SetPixel(i, j, Color.FromArgb(0, 0, 0));
+                    }
+                }
+            }
+            return saida;
         }
 
     }
