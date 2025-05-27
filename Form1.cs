@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -227,12 +228,14 @@ namespace Projeto_pdi
             }
             else if (name == "bMediana")
             {
+                
                 fMediana();
             }
             else if (name == "bKirsch")
             {
                 int valor = Gdialog("insira um valor para o threshold", "KIRSCH");
-                Kirsch(valor);
+                Kirsch(Pimagem.Image,valor);
+               
             }
             else if (name == "bErosao")
             {
@@ -245,6 +248,10 @@ namespace Projeto_pdi
             else if (name == "bThinning")
             {
                 ZhangSuenThinning();
+            }
+            else if (name == "bDesafio")
+            {
+                Desafio();
             }
         }
         private void grayscale()
@@ -578,7 +585,7 @@ namespace Projeto_pdi
 
             }
         }
-        private void Kirsch(int Threshold)
+        private void Kirsch(Image entrada, int Threshold)
         {
             Bitmap original = new Bitmap(Pimagem.Image);
             Bitmap saida = grayscale(original);
@@ -697,6 +704,127 @@ namespace Projeto_pdi
                 Pimagem.Image = saida;
             }
         }
+        private Bitmap Kirsch(Bitmap entrada, int Threshold)
+        {
+            Bitmap original = new Bitmap(Pimagem.Image);
+            Bitmap saida = grayscale(original);
+            double v, g1, g2, g3, g4, g5, g6, g7, g8, g = 0;
+            int[,] kernel = new int[,]
+            {
+                { 5, -3, -3 },
+                { 5,  0, -3 },
+                { 5, -3, -3 }
+            };
+            int[,] kernel2 = new int[,]
+            {
+                { -3, -3, -3 },
+                { 5,   0, -3 },
+                { 5,   5, -3 }
+            };
+            int[,] kernel3 = new int[,]
+            {
+                { -3, -3,-3 },
+                { -3, 0, -3 },
+                { 5, 5,   5 }
+            };
+            int[,] kernel4 = new int[,]
+            {
+                { -3,-3,-3 },
+                { -3, 0, 5 },
+                { -3, 5, 5 }
+            };
+            int[,] kernel5 = new int[,]
+            {
+                { -3, -3,5 },
+                { -3, 0, 5 },
+                { -3, -3,5 }
+            };
+            int[,] kernel6 = new int[,]
+            {
+                { -3, 5, 5 },
+                { -3, 0, 5 },
+                { -3,-3,-3 }
+            };
+            int[,] kernel7 = new int[,]
+            {
+                { 5, 5, 5 },
+                { -3,0,-3 },
+                {-3,-3,-3 }
+            };
+            int[,] kernel8 = new int[,]
+            {
+                { 5, 5, -3 },
+                { 5, 0, -3 },
+                {-3,-3, -3 }
+            };
+            for (int i = 1; i < saida.Height - 1; i++)
+            {
+                for (int j = 1; j < saida.Width - 1; j++)
+                {
+                    g1 = g2 = g3 = g4 = g5 = g6 = g7 = g8 = 0;
+                    for (int k = 0; k < 3; k++)
+                    {
+                        for (int l = 0; l < 3; l++)
+                        {
+                            v = kernel[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g1 += v;
+                            v = kernel2[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g2 += v;
+                            v = kernel3[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g3 += v;
+                            v = kernel4[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g4 += v;
+                            v = kernel5[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g5 += v;
+                            v = kernel6[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g6 += v;
+                            v = kernel7[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g7 += v;
+                            v = kernel8[k, l] * original.GetPixel(j + k - 1, i + l - 1).R;
+                            g8 += v;
+                        }
+                    }
+                    g = g1;
+                    if (g2 > g)
+                    {
+                        g = g2;
+                    }
+                    if (g3 > g)
+                    {
+                        g = g3;
+                    }
+                    if (g4 > g)
+                    {
+                        g = g4;
+                    }
+                    if (g5 > g)
+                    {
+                        g = g5;
+                    }
+                    if (g6 > g)
+                    {
+                        g = g6;
+                    }
+                    if (g7 > g)
+                    {
+                        g = g7;
+                    }
+                    if (g8 > g)
+                    {
+                        g = g8;
+                    }
+                    byte p = 0;
+                    if (g > Threshold)
+                    {
+                        p = 255;
+                    }
+                    saida.SetPixel(j, i, Color.FromArgb(p, p, p));
+                }
+                return saida;
+            }
+            return null;
+        }
+
         private void erosao() 
         { 
         Bitmap original = new Bitmap(Pimagem.Image);
@@ -755,6 +883,36 @@ namespace Projeto_pdi
             }
             Pimagem.Image = resultado;
         }
+        private Bitmap dilatacao(Image imagem)
+        {
+            Bitmap original = new Bitmap(Pimagem.Image);
+            Bitmap saida = grayscale(original);
+            Bitmap resultado = new Bitmap(original.Width, original.Height);
+
+            for (int y = 1; y < original.Height - 1; y++)
+            {
+                for (int x = 1; x < original.Width - 1; x++)
+                {
+                    int maior = 0;
+
+                    for (int ky = -1; ky <= 1; ky++)
+                    {
+                        for (int kx = -1; kx <= 1; kx++)
+                        {
+                            int pixel = saida.GetPixel(x + kx, y + ky).R;
+                            if (pixel > maior)
+                            {
+                                maior = pixel;
+                            }
+                        }
+                    }
+
+                    resultado.SetPixel(x, y, Color.FromArgb(maior, maior, maior));
+                }
+            }
+            return resultado;
+        }
+
 
 
         // holt thinning nao funcionando
@@ -1005,6 +1163,74 @@ namespace Projeto_pdi
             }
             return saida;
         }
+        private int floodfill(Bitmap entrada, int x, int y, Color subs )
+        {
+            if (x < 0 || x >= entrada.Width || y < 0 || y >= entrada.Height)
+            {
+                return 0;
+            }
+            if(entrada.GetPixel(x, y).B != 255)
+            {
+                return 0;
+            }
+            entrada.SetPixel(x, y, subs);
+            int count = 1;
+            // Chama recursivamente para os pixels vizinhos
+            count += floodfill(entrada, x + 1, y, subs);
+            count += floodfill(entrada, x - 1, y, subs);
+            count += floodfill(entrada, x, y + 1, subs);
+            count += floodfill(entrada, x, y - 1, subs);
 
+            return count;
+        }
+        private void Desafio() 
+        {
+            Bitmap saida = new Bitmap(Binarizaçao(Pimagem.Image, 120));
+            saida = dilatacao(saida);
+            saida = dilatacao(saida); 
+            saida = Binarizaçao(saida, 150);
+            byte count = 254;
+            int Area;
+            List<int> Comprimidos = new List<int>();
+
+            for (int i = 0; i < saida.Width; i++)
+            {
+                for (int j = 0; j < saida.Height; j++)
+                {
+                    Color cor = saida.GetPixel(i, j);
+                    if (cor.R == 255)
+                    {
+                        Area = 0;
+                        Color Caplic = Color.FromArgb(count, count, count);
+                        Area = floodfill(saida, i, j,Caplic);
+                        Comprimidos.Add(Area);
+                        count--;
+                    }
+                }    
+            }
+            Comprimidos.Sort();
+            int totais = Comprimidos.Count;
+            int redondos = 0;
+            int capsulas = 0;
+            int quebrados = 0;
+            for (int i = 0; i< Comprimidos.Count; i++)
+            {
+                double media = Comprimidos.Average();
+                //excluir abaixos da media e recalcular
+                if (Comprimidos.ElementAt(i) < media * 0.8)
+                {
+                    quebrados++;
+                }
+                else if (Comprimidos.ElementAt(i) > media * 1.144) capsulas++;
+                else redondos++;
+                if (Comprimidos.ElementAt(i) < media * 0.8)
+                {
+                    Comprimidos.RemoveAt(i);
+                    i--;
+
+                }
+            }
+            count++;
+        }
     }
 }

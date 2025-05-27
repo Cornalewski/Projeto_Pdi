@@ -50,7 +50,7 @@
             this.bMenor = new System.Windows.Forms.Button();
             this.bRedimensionamento = new System.Windows.Forms.Button();
             this.bGrayscale = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
+            this.bDesafio = new System.Windows.Forms.Button();
             this.bThinning = new System.Windows.Forms.Button();
             this.bDilatacao = new System.Windows.Forms.Button();
             this.bErosao = new System.Windows.Forms.Button();
@@ -71,8 +71,8 @@
             this.menuToolStripMenuItem});
             this.barra_menu.Location = new System.Drawing.Point(0, 0);
             this.barra_menu.Name = "barra_menu";
-            this.barra_menu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.barra_menu.Size = new System.Drawing.Size(1360, 28);
+            this.barra_menu.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.barra_menu.Size = new System.Drawing.Size(1191, 24);
             this.barra_menu.TabIndex = 0;
             this.barra_menu.Text = "barra_menu";
             // 
@@ -83,7 +83,7 @@
             this.botao_salvar});
             this.menuToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control;
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
             // botao_abri
@@ -92,7 +92,7 @@
             this.botao_abri.ForeColor = System.Drawing.SystemColors.Control;
             this.botao_abri.Image = ((System.Drawing.Image)(resources.GetObject("botao_abri.Image")));
             this.botao_abri.Name = "botao_abri";
-            this.botao_abri.Size = new System.Drawing.Size(179, 26);
+            this.botao_abri.Size = new System.Drawing.Size(143, 22);
             this.botao_abri.Text = "Abrir arquivo";
             this.botao_abri.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -102,7 +102,7 @@
             this.botao_salvar.ForeColor = System.Drawing.SystemColors.Control;
             this.botao_salvar.Image = ((System.Drawing.Image)(resources.GetObject("botao_salvar.Image")));
             this.botao_salvar.Name = "botao_salvar";
-            this.botao_salvar.Size = new System.Drawing.Size(179, 26);
+            this.botao_salvar.Size = new System.Drawing.Size(143, 22);
             this.botao_salvar.Text = "Salvar";
             this.botao_salvar.Click += new System.EventHandler(this.botao_salvar_Click);
             // 
@@ -144,9 +144,10 @@
             // 
             // bKirsch
             // 
-            this.bKirsch.Location = new System.Drawing.Point(983, 3);
+            this.bKirsch.Location = new System.Drawing.Point(732, 2);
+            this.bKirsch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bKirsch.Name = "bKirsch";
-            this.bKirsch.Size = new System.Drawing.Size(92, 100);
+            this.bKirsch.Size = new System.Drawing.Size(69, 81);
             this.bKirsch.TabIndex = 10;
             this.bKirsch.Text = "Kirsch";
             this.bKirsch.UseVisualStyleBackColor = true;
@@ -156,9 +157,10 @@
             // 
             // bMediana
             // 
-            this.bMediana.Location = new System.Drawing.Point(885, 3);
+            this.bMediana.Location = new System.Drawing.Point(659, 2);
+            this.bMediana.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bMediana.Name = "bMediana";
-            this.bMediana.Size = new System.Drawing.Size(92, 100);
+            this.bMediana.Size = new System.Drawing.Size(69, 81);
             this.bMediana.TabIndex = 9;
             this.bMediana.Text = "Mediana";
             this.bMediana.UseVisualStyleBackColor = true;
@@ -168,9 +170,10 @@
             // 
             // bContraste
             // 
-            this.bContraste.Location = new System.Drawing.Point(689, 3);
+            this.bContraste.Location = new System.Drawing.Point(513, 2);
+            this.bContraste.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bContraste.Name = "bContraste";
-            this.bContraste.Size = new System.Drawing.Size(92, 100);
+            this.bContraste.Size = new System.Drawing.Size(69, 81);
             this.bContraste.TabIndex = 8;
             this.bContraste.Text = "Constraste";
             this.bContraste.UseVisualStyleBackColor = true;
@@ -180,9 +183,10 @@
             // 
             // Btranslaçao
             // 
-            this.Btranslaçao.Location = new System.Drawing.Point(787, 3);
+            this.Btranslaçao.Location = new System.Drawing.Point(586, 2);
+            this.Btranslaçao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Btranslaçao.Name = "Btranslaçao";
-            this.Btranslaçao.Size = new System.Drawing.Size(92, 100);
+            this.Btranslaçao.Size = new System.Drawing.Size(69, 81);
             this.Btranslaçao.TabIndex = 7;
             this.Btranslaçao.Text = "Translação";
             this.Btranslaçao.UseVisualStyleBackColor = true;
@@ -192,9 +196,10 @@
             // 
             // bbrilho
             // 
-            this.bbrilho.Location = new System.Drawing.Point(591, 3);
+            this.bbrilho.Location = new System.Drawing.Point(440, 2);
+            this.bbrilho.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bbrilho.Name = "bbrilho";
-            this.bbrilho.Size = new System.Drawing.Size(92, 100);
+            this.bbrilho.Size = new System.Drawing.Size(69, 81);
             this.bbrilho.TabIndex = 6;
             this.bbrilho.Text = "Brilho";
             this.bbrilho.UseVisualStyleBackColor = true;
@@ -204,9 +209,10 @@
             // 
             // rotacao
             // 
-            this.rotacao.Location = new System.Drawing.Point(493, 3);
+            this.rotacao.Location = new System.Drawing.Point(367, 2);
+            this.rotacao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rotacao.Name = "rotacao";
-            this.rotacao.Size = new System.Drawing.Size(92, 100);
+            this.rotacao.Size = new System.Drawing.Size(69, 81);
             this.rotacao.TabIndex = 5;
             this.rotacao.Text = "Rotação";
             this.rotacao.UseVisualStyleBackColor = true;
@@ -216,9 +222,10 @@
             // 
             // bEspelhamentoh
             // 
-            this.bEspelhamentoh.Location = new System.Drawing.Point(395, 3);
+            this.bEspelhamentoh.Location = new System.Drawing.Point(294, 2);
+            this.bEspelhamentoh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bEspelhamentoh.Name = "bEspelhamentoh";
-            this.bEspelhamentoh.Size = new System.Drawing.Size(92, 100);
+            this.bEspelhamentoh.Size = new System.Drawing.Size(69, 81);
             this.bEspelhamentoh.TabIndex = 4;
             this.bEspelhamentoh.Text = "EspelhamentoH";
             this.bEspelhamentoh.UseVisualStyleBackColor = true;
@@ -228,9 +235,10 @@
             // 
             // bEspelhamentov
             // 
-            this.bEspelhamentov.Location = new System.Drawing.Point(297, 3);
+            this.bEspelhamentov.Location = new System.Drawing.Point(221, 2);
+            this.bEspelhamentov.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bEspelhamentov.Name = "bEspelhamentov";
-            this.bEspelhamentov.Size = new System.Drawing.Size(92, 100);
+            this.bEspelhamentov.Size = new System.Drawing.Size(69, 81);
             this.bEspelhamentov.TabIndex = 3;
             this.bEspelhamentov.Text = "EspelhamentoV";
             this.bEspelhamentov.UseVisualStyleBackColor = true;
@@ -240,9 +248,10 @@
             // 
             // bMenor
             // 
-            this.bMenor.Location = new System.Drawing.Point(199, 3);
+            this.bMenor.Location = new System.Drawing.Point(148, 2);
+            this.bMenor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bMenor.Name = "bMenor";
-            this.bMenor.Size = new System.Drawing.Size(92, 100);
+            this.bMenor.Size = new System.Drawing.Size(69, 81);
             this.bMenor.TabIndex = 2;
             this.bMenor.Text = "Menor";
             this.bMenor.UseVisualStyleBackColor = true;
@@ -252,9 +261,10 @@
             // 
             // bRedimensionamento
             // 
-            this.bRedimensionamento.Location = new System.Drawing.Point(101, 3);
+            this.bRedimensionamento.Location = new System.Drawing.Point(75, 2);
+            this.bRedimensionamento.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bRedimensionamento.Name = "bRedimensionamento";
-            this.bRedimensionamento.Size = new System.Drawing.Size(92, 100);
+            this.bRedimensionamento.Size = new System.Drawing.Size(69, 81);
             this.bRedimensionamento.TabIndex = 1;
             this.bRedimensionamento.Text = "Redimensionar";
             this.bRedimensionamento.UseVisualStyleBackColor = true;
@@ -268,9 +278,10 @@
             this.bGrayscale.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.bGrayscale.CausesValidation = false;
             this.flowLayoutPanel1.SetFlowBreak(this.bGrayscale, true);
-            this.bGrayscale.Location = new System.Drawing.Point(3, 3);
+            this.bGrayscale.Location = new System.Drawing.Point(2, 2);
+            this.bGrayscale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bGrayscale.Name = "bGrayscale";
-            this.bGrayscale.Size = new System.Drawing.Size(92, 100);
+            this.bGrayscale.Size = new System.Drawing.Size(69, 81);
             this.bGrayscale.TabIndex = 0;
             this.bGrayscale.Text = "Grayscale";
             this.bGrayscale.UseVisualStyleBackColor = true;
@@ -278,20 +289,25 @@
             this.bGrayscale.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseMove);
             this.bGrayscale.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseUp);
             // 
-            // button15
+            // bDesafio
             // 
-            this.button15.Location = new System.Drawing.Point(1381, 3);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(94, 100);
-            this.button15.TabIndex = 14;
-            this.button15.Text = "button15";
-            this.button15.UseVisualStyleBackColor = true;
+            this.bDesafio.Location = new System.Drawing.Point(1027, 2);
+            this.bDesafio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bDesafio.Name = "bDesafio";
+            this.bDesafio.Size = new System.Drawing.Size(70, 81);
+            this.bDesafio.TabIndex = 14;
+            this.bDesafio.Text = "Desafio\r\n";
+            this.bDesafio.UseVisualStyleBackColor = true;
+            this.bDesafio.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseDown);
+            this.bDesafio.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseMove);
+            this.bDesafio.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseUp);
             // 
             // bThinning
             // 
-            this.bThinning.Location = new System.Drawing.Point(1281, 3);
+            this.bThinning.Location = new System.Drawing.Point(953, 2);
+            this.bThinning.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bThinning.Name = "bThinning";
-            this.bThinning.Size = new System.Drawing.Size(94, 100);
+            this.bThinning.Size = new System.Drawing.Size(70, 81);
             this.bThinning.TabIndex = 13;
             this.bThinning.Text = "Thinning";
             this.bThinning.UseVisualStyleBackColor = true;
@@ -301,9 +317,10 @@
             // 
             // bDilatacao
             // 
-            this.bDilatacao.Location = new System.Drawing.Point(1181, 3);
+            this.bDilatacao.Location = new System.Drawing.Point(879, 2);
+            this.bDilatacao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bDilatacao.Name = "bDilatacao";
-            this.bDilatacao.Size = new System.Drawing.Size(94, 100);
+            this.bDilatacao.Size = new System.Drawing.Size(70, 81);
             this.bDilatacao.TabIndex = 12;
             this.bDilatacao.Text = "dilataçao";
             this.bDilatacao.UseVisualStyleBackColor = true;
@@ -313,9 +330,10 @@
             // 
             // bErosao
             // 
-            this.bErosao.Location = new System.Drawing.Point(1081, 3);
+            this.bErosao.Location = new System.Drawing.Point(805, 2);
+            this.bErosao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bErosao.Name = "bErosao";
-            this.bErosao.Size = new System.Drawing.Size(94, 100);
+            this.bErosao.Size = new System.Drawing.Size(70, 81);
             this.bErosao.TabIndex = 11;
             this.bErosao.Text = "erosao";
             this.bErosao.UseVisualStyleBackColor = true;
@@ -343,12 +361,12 @@
             this.flowLayoutPanel1.Controls.Add(this.bErosao);
             this.flowLayoutPanel1.Controls.Add(this.bDilatacao);
             this.flowLayoutPanel1.Controls.Add(this.bThinning);
-            this.flowLayoutPanel1.Controls.Add(this.button15);
+            this.flowLayoutPanel1.Controls.Add(this.bDesafio);
             this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 482);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(92, 392);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1444, 134);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1083, 109);
             this.flowLayoutPanel1.TabIndex = 13;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -356,7 +374,8 @@
             // 
             this.Pimagem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.Pimagem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Pimagem.Location = new System.Drawing.Point(100, 43);
+            this.Pimagem.Location = new System.Drawing.Point(75, 35);
+            this.Pimagem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Pimagem.Name = "Pimagem";
             this.Pimagem.Size = new System.Drawing.Size(338, 287);
             this.Pimagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -376,25 +395,26 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(50)))));
             this.panel1.Controls.Add(this.Pimagem);
-            this.panel1.Location = new System.Drawing.Point(2, 31);
+            this.panel1.Location = new System.Drawing.Point(2, 25);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1357, 448);
+            this.panel1.Size = new System.Drawing.Size(1189, 364);
             this.panel1.TabIndex = 14;
             // 
             // mainS
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(50)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1360, 577);
+            this.ClientSize = new System.Drawing.Size(1191, 469);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.barra_menu);
             this.MainMenuStrip = this.barra_menu;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "mainS";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -432,7 +452,7 @@
         private System.Windows.Forms.Button bContraste;
         private System.Windows.Forms.Button Btranslaçao;
         private System.Windows.Forms.Button bKirsch;
-        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button bDesafio;
         private System.Windows.Forms.Button bThinning;
         private System.Windows.Forms.Button bDilatacao;
         private System.Windows.Forms.Button bErosao;
