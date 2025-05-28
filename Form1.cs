@@ -94,6 +94,38 @@ namespace Projeto_pdi
             valor[1] = (float)inputBox2.Value;
             return valor;
         }
+        public static void showDesafio(int total,int quebrados, int capsulas, int redondos)
+        {
+            Form prompt = new Form();
+            prompt.BackColor = Color.FromArgb(46, 51, 50);
+            prompt.StartPosition = FormStartPosition.CenterScreen;
+            prompt.Width = 300;
+            prompt.Height = 200;
+            prompt.Text = "Desafio";
+
+            Label TotalLabel = new Label() { Left = 30, Top = 20, Text = "Total de comprimidos na esteira: " + total };
+            TotalLabel.Width = 220;
+            TotalLabel.ForeColor = Color.White;
+            prompt.Controls.Add(TotalLabel);
+
+            Label nQuebrados = new Label() { Left = 30, Top = 45, Text = "Quantidade de comprimidos quebrados: " + quebrados };
+            nQuebrados.Width = 220;
+            nQuebrados.ForeColor = Color.White;
+            prompt.Controls.Add(nQuebrados);
+
+            Label Lredondos = new Label() { Left = 30, Top = 70, Text = "Quantidade de comprimidos Redondos: " + redondos };
+            Lredondos.Width = 220;
+            Lredondos.ForeColor = Color.White;
+            prompt.Controls.Add(Lredondos);
+
+            Label Lcapsulas = new Label() { Left = 30, Top = 95, Text = "Quantidade de Capsulas: " + capsulas };
+            Lcapsulas.Width = 220;
+            Lcapsulas.ForeColor = Color.White;
+            prompt.Controls.Add(Lcapsulas);
+
+            prompt.ShowDialog();
+            return;
+        }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -1213,24 +1245,23 @@ namespace Projeto_pdi
             int redondos = 0;
             int capsulas = 0;
             int quebrados = 0;
+            // calcular media minima
             for (int i = 0; i< Comprimidos.Count; i++)
             {
                 double media = Comprimidos.Average();
-                //excluir abaixos da media e recalcular
+                // verifica se a media é compativel com um comprimido inteiro
+                if (media < (saida.Width * saida.Height) * 0.013 || media > (saida.Width * saida.Height) *0.017)
+                    media = (saida.Width * saida.Height) * 0.014;
                 if (Comprimidos.ElementAt(i) < media * 0.8)
                 {
                     quebrados++;
-                }
-                else if (Comprimidos.ElementAt(i) > media * 1.144) capsulas++;
-                else redondos++;
-                if (Comprimidos.ElementAt(i) < media * 0.8)
-                {
                     Comprimidos.RemoveAt(i);
                     i--;
-
                 }
+                else if (Comprimidos.ElementAt(i) > media * 1.14) capsulas++;
+                else redondos++;
             }
-            count++;
+            showDesafio(totais,quebrados, capsulas,redondos);
         }
     }
 }
