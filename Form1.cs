@@ -94,7 +94,7 @@ namespace Projeto_pdi
             valor[1] = (float)inputBox2.Value;
             return valor;
         }
-        public static void showDesafio(int total,int quebrados, int capsulas, int redondos)
+        public static void showDesafio(int total, int quebrados, int capsulas, int redondos)
         {
             Form prompt = new Form();
             prompt.BackColor = Color.FromArgb(46, 51, 50);
@@ -163,7 +163,6 @@ namespace Projeto_pdi
 
             return newImage;
         }
-
         private void Pimagem_MouseMove(object sender, MouseEventArgs e)
         {
             Control c = sender as Control;
@@ -260,14 +259,14 @@ namespace Projeto_pdi
             }
             else if (name == "bMediana")
             {
-                
+
                 fMediana();
             }
             else if (name == "bKirsch")
             {
                 int valor = Gdialog("insira um valor para o threshold", "KIRSCH");
-                Kirsch(Pimagem.Image,valor);
-               
+                Kirsch(Pimagem.Image, valor);
+
             }
             else if (name == "bErosao")
             {
@@ -857,34 +856,34 @@ namespace Projeto_pdi
             return null;
         }
 
-        private void erosao() 
-        { 
-        Bitmap original = new Bitmap(Pimagem.Image);
-        Bitmap saida = grayscale(original);
-        Bitmap resultado = new Bitmap(original.Width, original.Height);
+        private void erosao()
+        {
+            Bitmap original = new Bitmap(Pimagem.Image);
+            Bitmap saida = grayscale(original);
+            Bitmap resultado = new Bitmap(original.Width, original.Height);
 
-            for (int y = 1; y<original.Height - 1; y++)
+            for (int y = 1; y < original.Height - 1; y++)
             {
-               for (int x = 1; x<original.Width - 1; x++)
-               {
-                   int menor = 255;
+                for (int x = 1; x < original.Width - 1; x++)
+                {
+                    int menor = 255;
 
-                   for (int ky = -1; ky <= 1; ky++)
-                   {
-                      for (int kx = -1; kx <= 1; kx++)
-                      {
-                         int pixel = saida.GetPixel(x + kx, y + ky).R;
-                         if (pixel<menor)
-                         {
-                           menor = pixel;
-                         }
-                      }
-                   }
+                    for (int ky = -1; ky <= 1; ky++)
+                    {
+                        for (int kx = -1; kx <= 1; kx++)
+                        {
+                            int pixel = saida.GetPixel(x + kx, y + ky).R;
+                            if (pixel < menor)
+                            {
+                                menor = pixel;
+                            }
+                        }
+                    }
 
-                 resultado.SetPixel(x, y, Color.FromArgb(menor, menor, menor));
-               }
+                    resultado.SetPixel(x, y, Color.FromArgb(menor, menor, menor));
+                }
             }
-         Pimagem.Image = resultado;
+            Pimagem.Image = resultado;
         }
         private void dilatacao()
         {
@@ -910,7 +909,7 @@ namespace Projeto_pdi
                         }
                     }
 
-                    resultado.SetPixel(x, y, Color.FromArgb(maior,maior,maior));
+                    resultado.SetPixel(x, y, Color.FromArgb(maior, maior, maior));
                 }
             }
             Pimagem.Image = resultado;
@@ -1195,13 +1194,13 @@ namespace Projeto_pdi
             }
             return saida;
         }
-        private int floodfill(Bitmap entrada, int x, int y, Color subs )
+        private int floodfill(Bitmap entrada, int x, int y, Color subs)
         {
             if (x < 0 || x >= entrada.Width || y < 0 || y >= entrada.Height)
             {
                 return 0;
             }
-            if(entrada.GetPixel(x, y).B != 255)
+            if (entrada.GetPixel(x, y).B != 255)
             {
                 return 0;
             }
@@ -1215,11 +1214,11 @@ namespace Projeto_pdi
 
             return count;
         }
-        private void Desafio() 
+        private void Desafio()
         {
             Bitmap saida = new Bitmap(Binarizaçao(Pimagem.Image, 120));
             saida = dilatacao(saida);
-            saida = dilatacao(saida); 
+            saida = dilatacao(saida);
             saida = Binarizaçao(saida, 150);
             byte count = 254;
             int Area;
@@ -1234,11 +1233,11 @@ namespace Projeto_pdi
                     {
                         Area = 0;
                         Color Caplic = Color.FromArgb(count, count, count);
-                        Area = floodfill(saida, i, j,Caplic);
+                        Area = floodfill(saida, i, j, Caplic);
                         Comprimidos.Add(Area);
                         count--;
                     }
-                }    
+                }
             }
             Comprimidos.Sort();
             int totais = Comprimidos.Count;
@@ -1246,11 +1245,11 @@ namespace Projeto_pdi
             int capsulas = 0;
             int quebrados = 0;
             // calcular media minima
-            for (int i = 0; i< Comprimidos.Count; i++)
+            for (int i = 0; i < Comprimidos.Count; i++)
             {
                 double media = Comprimidos.Average();
                 // verifica se a media é compativel com um comprimido inteiro
-                if (media < (saida.Width * saida.Height) * 0.013 || media > (saida.Width * saida.Height) *0.017)
+                if (media < (saida.Width * saida.Height) * 0.013 || media > (saida.Width * saida.Height) * 0.017)
                     media = (saida.Width * saida.Height) * 0.014;
                 if (Comprimidos.ElementAt(i) < media * 0.8)
                 {
@@ -1261,7 +1260,7 @@ namespace Projeto_pdi
                 else if (Comprimidos.ElementAt(i) > media * 1.14) capsulas++;
                 else redondos++;
             }
-            showDesafio(totais,quebrados, capsulas,redondos);
+            showDesafio(totais, quebrados, capsulas, redondos);
         }
     }
 }
