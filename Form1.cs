@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Projeto_pdi
@@ -19,6 +15,7 @@ namespace Projeto_pdi
         int xPos;
         int yPos;
         Image imagem0;
+        List<Image> images = new List<Image>();
         public mainS()
         {
             InitializeComponent();
@@ -127,7 +124,7 @@ namespace Projeto_pdi
             return;
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        private void botao_abrir_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -139,6 +136,7 @@ namespace Projeto_pdi
                     imagem = ScaleImage(imagem, Pimagem.Width, Pimagem.Height);
                     Pimagem.Image = imagem;
                     imagem0 = imagem;
+                    Pimagem.Location = new Point(133, 45);
                 }
                 else
                 {
@@ -219,10 +217,12 @@ namespace Projeto_pdi
         {
             if (name == "bGrayscale")
             {
+                images.Add(Pimagem.Image);
                 grayscale();
             }
             else if (name == "bRedimensionamento")
             {
+                images.Add(Pimagem.Image);
                 float[] valor = new float[2];
                 valor = Gdialog("valor de x", "valor de y", "Redimensionamento ");
                 redimensionamento(valor[0], valor[1]);
@@ -230,54 +230,64 @@ namespace Projeto_pdi
 
             else if (name == "bEspelhamentov")
             {
+                images.Add(Pimagem.Image);
                 espelhamentoV();
             }
             else if (name == "bEspelhamentoh")
             {
+                images.Add(Pimagem.Image);
                 espelhamentoH();
             }
             else if (name == "rotacao")
             {
+                images.Add(Pimagem.Image);
                 int valor = Gdialog("insira um valor para a rotação ", "ROTAÇÃO");
                 rotaçao(valor);
             }
             else if (name == "bbrilho")
             {
+                images.Add(Pimagem.Image);
                 int valor = Gdialog("insira um valor para o brilho", "Brilho");
                 Brilho(valor);
             }
             else if (name == "bContraste")
             {
+                images.Add(Pimagem.Image);
                 float valor = Gdialog("insira um valor para Constraste", "Contraste");
                 Contraste(valor);
             }
             else if (name == "Btranslaçao")
             {
+                images.Add(Pimagem.Image);
                 float[] valor = new float[2];
                 valor = Gdialog("valor de x", "valor de y", "Translação");
                 tranlaçao((int)valor[0], (int)valor[1]);
             }
             else if (name == "bMediana")
             {
-
+                images.Add(Pimagem.Image);
                 fMediana();
             }
             else if (name == "bKirsch")
             {
+                images.Add(Pimagem.Image);
                 int valor = Gdialog("insira um valor para o threshold", "KIRSCH");
                 Kirsch(Pimagem.Image, valor);
 
             }
             else if (name == "bErosao")
             {
+                images.Add(Pimagem.Image);
                 erosao();
             }
             else if (name == "bDilatacao")
             {
+                images.Add(Pimagem.Image);
                 dilatacao();
             }
             else if (name == "bThinning")
             {
+                images.Add(Pimagem.Image);
                 ZhangSuenThinning();
             }
             else if (name == "bDesafio")
@@ -1261,6 +1271,23 @@ namespace Projeto_pdi
                 else redondos++;
             }
             showDesafio(totais, quebrados, capsulas, redondos);
+        }
+
+        private void mainS_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                botao_salvar_Click(sender, e);
+            }
+            else if (e.Control && e.KeyCode == Keys.N)
+            {
+                botao_abrir_Click(sender, e);
+            }
+            else if (e.Control && e.KeyCode == Keys.Z)
+            {
+                Pimagem.Image = images.Last();
+                images.RemoveAt(images.Count - 1);
+            }
         }
     }
 }

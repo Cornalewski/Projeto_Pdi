@@ -71,7 +71,7 @@
             this.barra_menu.Location = new System.Drawing.Point(0, 0);
             this.barra_menu.Name = "barra_menu";
             this.barra_menu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.barra_menu.Size = new System.Drawing.Size(1234, 24);
+            this.barra_menu.Size = new System.Drawing.Size(1234, 28);
             this.barra_menu.TabIndex = 0;
             this.barra_menu.Text = "barra_menu";
             // 
@@ -82,7 +82,7 @@
             this.botao_salvar});
             this.menuToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Control;
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
             // botao_abri
@@ -91,9 +91,9 @@
             this.botao_abri.ForeColor = System.Drawing.SystemColors.Control;
             this.botao_abri.Image = ((System.Drawing.Image)(resources.GetObject("botao_abri.Image")));
             this.botao_abri.Name = "botao_abri";
-            this.botao_abri.Size = new System.Drawing.Size(147, 26);
+            this.botao_abri.Size = new System.Drawing.Size(224, 26);
             this.botao_abri.Text = "Abrir arquivo";
-            this.botao_abri.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.botao_abri.Click += new System.EventHandler(this.botao_abrir_Click);
             // 
             // botao_salvar
             // 
@@ -101,7 +101,7 @@
             this.botao_salvar.ForeColor = System.Drawing.SystemColors.Control;
             this.botao_salvar.Image = ((System.Drawing.Image)(resources.GetObject("botao_salvar.Image")));
             this.botao_salvar.Name = "botao_salvar";
-            this.botao_salvar.Size = new System.Drawing.Size(147, 26);
+            this.botao_salvar.Size = new System.Drawing.Size(224, 26);
             this.botao_salvar.Text = "Salvar";
             this.botao_salvar.Click += new System.EventHandler(this.botao_salvar_Click);
             // 
@@ -316,7 +316,6 @@
             this.bGrayscale.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseDown);
             this.bGrayscale.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseMove);
             this.bGrayscale.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Pimagem_MouseUp);
-
             // 
             // bDesafio
             // 
@@ -421,7 +420,7 @@
             // Pimagem
             // 
             this.Pimagem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.Pimagem.Location = new System.Drawing.Point(133, 45);
+            this.Pimagem.Location = new System.Drawing.Point(120, 55);
             this.Pimagem.Margin = new System.Windows.Forms.Padding(2);
             this.Pimagem.Name = "Pimagem";
             this.Pimagem.Size = new System.Drawing.Size(338, 287);
@@ -453,7 +452,7 @@
             // mainS
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(50)))));
@@ -464,12 +463,14 @@
             this.Controls.Add(this.barra_menu);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.MainMenuStrip = this.barra_menu;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "mainS";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mainS_KeyDown);
             this.barra_menu.ResumeLayout(false);
             this.barra_menu.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
