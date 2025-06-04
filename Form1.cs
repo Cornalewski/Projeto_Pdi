@@ -621,8 +621,14 @@ namespace Projeto_pdi
                         formato = System.Drawing.Imaging.ImageFormat.Bmp;
                         break;
                 }
-
-                Pimagem.Image.Save(sfd.FileName, formato);
+                if (Pimagem.Image != null) 
+                   {
+                    Pimagem.Image.Save(sfd.FileName, formato);
+                   }
+                else
+                {
+                    MessageBox.Show("Nenhum arquivo para salvar.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
             }
         }
